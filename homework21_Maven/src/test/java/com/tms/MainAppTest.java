@@ -1,4 +1,4 @@
-package org.tms;
+package com.tms;
 
 import static org.junit.Assert.assertTrue;
 

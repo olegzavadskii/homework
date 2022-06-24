@@ -108,15 +108,6 @@ public class MyServlet extends HttpServlet {
         }
     }
 
-    //Вернуть в куках время последнего обращения к серверу
-//    @Override
-//    protected long getLastModified(HttpServletRequest req) {
-//        HttpSession session = req.getSession();
-//        Date lastAccessedTime = new Date(session.getLastAccessedTime());
-//        System.out.println(lastAccessedTime);
-//        return 0;
-//    }
-
     @Override
     public void destroy() {
         super.destroy();

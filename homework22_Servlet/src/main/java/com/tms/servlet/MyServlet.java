@@ -34,6 +34,7 @@ public class MyServlet extends HttpServlet {
                 for (String key : keys) {
                     if (key.equals(id)) {
                         writer.println(cars.get(id).toString());
+                        break;
                     }
                 }
             } else {
@@ -100,6 +101,7 @@ public class MyServlet extends HttpServlet {
                     if (key.equals(id)) {
                         cars.remove(id);
                         writer.println("A car was deleted successfully");
+                        break;
                     }
                 }
             } else {

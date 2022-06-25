@@ -4,7 +4,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +30,7 @@ public class MyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (PrintWriter writer = resp.getWriter()) {
             String id = req.getParameter("id");
+            String cookie = req.getParameter("cookie");
             if (id != null) {
                 Collection<String> keys = cars.keySet();
                 for (String key : keys) {
@@ -35,6 +39,15 @@ public class MyServlet extends HttpServlet {
                         break;
                     }
                 }
+            } else if (cookie != null) {
+                //вернуть время доступа в куках не получается
+                HttpSession session = req.getSession();
+                Cookie cookie1 = new Cookie("myCookie", "value");
+                resp.addCookie(cookie1);
+                Date date = new Date(session.getLastAccessedTime());
+                DateFormat formatToDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                String s = formatToDate.format(date);
+                writer.println(s);
             } else {
                 for (Car car : cars.values()) {
                     writer.println(car);

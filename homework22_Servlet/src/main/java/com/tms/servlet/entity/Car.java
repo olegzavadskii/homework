@@ -1,4 +1,4 @@
-package com.tms.servlet;
+package com.tms.servlet.entity;
 
 public class Car {
     private String model;

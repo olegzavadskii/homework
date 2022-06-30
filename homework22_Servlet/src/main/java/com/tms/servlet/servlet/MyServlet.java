@@ -1,6 +1,10 @@
-package com.tms.servlet;
+package com.tms.servlet.servlet;
 
+import com.tms.servlet.entity.Car;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,32 +15,43 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@WebServlet(urlPatterns = "/cars")
 public class MyServlet extends HttpServlet {
     Map<String, Car> cars = new HashMap<>();
 
     @Override
     public void init() throws ServletException {
+        System.out.println("Servlet was created");
         Car car1 = new Car("VW", "silver", 5);
         Car car2 = new Car("Renault", "green", 6);
         Car car3 = new Car("AUDI", "white", 7);
         cars.put("1", car1);
         cars.put("2", car2);
         cars.put("3", car3);
-        super.init();
     }
 
     //печать машины по id или список всех машин
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //установка интервала неактивности, после которого удаляются данные сессии
+        //(это для более раннего вызова SessionListener, а то по умолчанию 30 минут многовато))
+        req.getSession().setMaxInactiveInterval(20);
+
         try (PrintWriter writer = resp.getWriter()) {
             String id = req.getParameter("id");
             String cookie = req.getParameter("cookie");
             if (id != null) {
-                Collection<String> keys = cars.keySet();
-                for (String key : keys) {
-                    if (key.equals(id)) {
-                        writer.println(cars.get(id).toString());
-                        break;
+                if (id.equalsIgnoreCase("getAll")) {
+                    for (Car car : cars.values()) {
+                        writer.println(car);
+                    }
+                } else {
+                    Collection<String> keys = cars.keySet();
+                    for (String key : keys) {
+                        if (key.equals(id)) {
+                            writer.println(cars.get(id).toString());
+                            break;
+                        }
                     }
                 }
             } else if (cookie != null) {
@@ -49,9 +64,9 @@ public class MyServlet extends HttpServlet {
                 String s = formatToDate.format(date);
                 writer.println(s);
             } else {
-                for (Car car : cars.values()) {
-                    writer.println(car);
-                }
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher
+                        ("/hello_world.html");
+                requestDispatcher.forward(req, resp);
             }
         }
     }
@@ -123,7 +138,7 @@ public class MyServlet extends HttpServlet {
 
     @Override
     public void destroy() {
-        super.destroy();
+        System.out.println("Servlet was destroyed");
     }
 
 }

@@ -17,7 +17,8 @@ import java.util.ArrayList;
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     static DBUser dbUser = new DBUser(new ArrayList<User>());
-    public static DBUser returnDBuser(){
+
+    public static DBUser returnDBuser() {
         return dbUser;
     }
 
@@ -34,8 +35,7 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher requestDispatcher;
         String loginForCheck = req.getParameter("loginForCheck");
         String passwordForCheck = req.getParameter("passwordForCheck");
-        User userFromReq = new User(loginForCheck, passwordForCheck);
-        if (dbUser.checkWithRole(userFromReq) == Role.ADMIN) {
+        if (dbUser.checkWithRole(loginForCheck, passwordForCheck) > 0) {
             requestDispatcher = req.getRequestDispatcher(pathForAdmin);
             requestDispatcher.forward(req, resp);
         } else {

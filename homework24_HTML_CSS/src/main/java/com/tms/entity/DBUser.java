@@ -6,6 +6,7 @@ import com.tms.Role;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DBUser {
     private List<User> dbUserList;
@@ -18,30 +19,18 @@ public class DBUser {
         dbUserList.add(user);
     }
 
-    public Role checkWithRole(User user) {
-        Role role = Role.USER;
-        Iterator<User> iterator = dbUserList.iterator();
-        while (iterator.hasNext()) {
-            User next = iterator.next();
-            if (next.getLogin().equals(user.getLogin())) {
-                if (next.getPassword().equals(user.getPassword())) {
-                    role = next.getRole();
-                }
-            }
-        }
-        return role;
+    public long checkWithRole(String login, String password) {
+        return dbUserList.stream()
+                .filter(user -> Role.ADMIN.equals(user.getRole()))
+                .filter(user -> login.equals(user.getLogin()))
+                .filter(user -> password.equals(user.getPassword()))
+                .count();
     }
 
-    public boolean checkWithLogin(User user) {
-        boolean isFind = false;
-        Iterator<User> iterator = dbUserList.iterator();
-        while (iterator.hasNext()) {
-            User next = iterator.next();
-            if (next.getLogin().equalsIgnoreCase(user.getLogin())) {
-                isFind = true;
-            }
-        }
-        return isFind;
+    public long checkWithLogin(String login) {
+        return dbUserList.stream()
+                .filter(user -> login.equals(user.getLogin()))
+                .count();
     }
 
 }

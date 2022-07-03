@@ -33,7 +33,7 @@ public class ServletForRegistration extends HttpServlet {
         User userForRegistration = new User(loginForRegistration,
                 passwordForRegistration, genderForRegistration,
                 descriptionForRegistration, roleForRegistration);
-        if (dbUser.checkWithLogin(userForRegistration)) {
+        if (dbUser.checkWithLogin(loginForRegistration) > 0) {
             requestDispatcher = req.getRequestDispatcher(pathIfError);
             requestDispatcher.forward(req, resp);
         } else {

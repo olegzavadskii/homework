@@ -1,6 +1,7 @@
 package com.tms.servlet.servlet;
 
 import com.tms.servlet.entity.Car;
+import com.tms.servlet.entity.CarService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 @WebServlet(urlPatterns = "/cars")
 public class MyServlet extends HttpServlet {
-    Map<String, Car> cars = new HashMap<>();
+    CarService carService = new CarService(new HashMap<String, Car>());
 
     @Override
     public void init() throws ServletException {
@@ -25,9 +26,9 @@ public class MyServlet extends HttpServlet {
         Car car1 = new Car("VW", "silver", 5);
         Car car2 = new Car("Renault", "green", 6);
         Car car3 = new Car("AUDI", "white", 7);
-        cars.put("1", car1);
-        cars.put("2", car2);
-        cars.put("3", car3);
+        carService.addCar("1", car1);
+        carService.addCar("2", car2);
+        carService.addCar("3", car3);
     }
 
     //печать машины по id или список всех машин
@@ -42,17 +43,9 @@ public class MyServlet extends HttpServlet {
             String cookie = req.getParameter("cookie");
             if (id != null) {
                 if (id.equalsIgnoreCase("getAll")) {
-                    for (Car car : cars.values()) {
-                        writer.println(car);
-                    }
+                    carService.getAllCars(writer);
                 } else {
-                    Collection<String> keys = cars.keySet();
-                    for (String key : keys) {
-                        if (key.equals(id)) {
-                            writer.println(cars.get(id).toString());
-                            break;
-                        }
-                    }
+                    carService.getCarWithID(writer, id);
                 }
             } else if (cookie != null) {
                 //вернуть время доступа в куках не получается
@@ -81,8 +74,8 @@ public class MyServlet extends HttpServlet {
             String age = req.getParameter("age");
             int ageFromReq = Integer.parseInt(age);
             Car carFromReq = new Car(model, color, ageFromReq);
-            cars.put(id, carFromReq);
-            for (Car car : cars.values()) {
+            carService.getCars().put(id, carFromReq);
+            for (Car car : carService.getCars().values()) {
                 writer.println(car);
             }
         }
@@ -96,21 +89,21 @@ public class MyServlet extends HttpServlet {
             String model = req.getParameter("model");
             String color = req.getParameter("color");
             String age = req.getParameter("age");
-            Collection<String> keys = cars.keySet();
+            Collection<String> keys = carService.getCars().keySet();
             for (String key : keys) {
                 if (key.equals(id)) {
                     if (model != null) {
-                        cars.get(id).setModel(model);
+                        carService.getCars().get(id).setModel(model);
                     }
                     if (color != null) {
-                        cars.get(id).setColor(color);
+                        carService.getCars().get(id).setColor(color);
                     }
                     if (age != null) {
-                        cars.get(id).setAge(Integer.parseInt(age));
+                        carService.getCars().get(id).setAge(Integer.parseInt(age));
                     }
                 }
             }
-            for (Car car : cars.values()) {
+            for (Car car : carService.getCars().values()) {
                 writer.println(car);
             }
         }
@@ -122,10 +115,10 @@ public class MyServlet extends HttpServlet {
         try (PrintWriter writer = resp.getWriter()) {
             String id = req.getParameter("id");
             if (id != null) {
-                Collection<String> keys = cars.keySet();
+                Collection<String> keys = carService.getCars().keySet();
                 for (String key : keys) {
                     if (key.equals(id)) {
-                        cars.remove(id);
+                        carService.getCars().remove(id);
                         writer.println("A car was deleted successfully");
                         break;
                     }

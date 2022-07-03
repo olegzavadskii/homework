@@ -3,22 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Page for administrator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<form method="post" action="/homework24_HTML_CSS/registration">
-    <input type="text" name="loginForRegistration" id="loginForRegistration" placeholder="Enter login for new user"><br>
-    <input type="password" name="passwordForRegistration" id="passwordForRegistration"
-           placeholder="Enter password for new user"><br>
-    <input type="radio" name="genderForRegistration" id="MALE" value="MALE">Male <br>
-    <input type="radio" name="genderForRegistration" id="FEMALE" value="FEMALE">Female <br>
-    <input type="text" name="descriptionForRegistration" id="description"
-           placeholder="Enter description for new user"><br>
-    <input type="radio" name="roleForRegistration" id="USER" value="USER">User <br>
-    <input type="radio" name="roleForRegistration" id="ADMIN" value="ADMIN">Admin <br>
-    <input type="submit" value="Submit">
+<div class="parent_div">
 
-</form>
+    <form method="post" action="/homework24_HTML_CSS/registration">
+        <input type="text" name="loginForRegistration" id="loginForRegistration" placeholder="Enter login for new user"><br>
+        <input type="password" name="passwordForRegistration" id="passwordForRegistration"
+               placeholder="Enter password for new user"><br>
+
+        <div class="gender">
+            <label for="MALE">Male</label>
+            <input type="radio" name="genderForRegistration" id="MALE" value="MALE">
+            <label for="FEMALE">Female</label>
+            <input type="radio" name="genderForRegistration" id="FEMALE"
+                   value="FEMALE"><br>
+        </div>
+
+        <input type="text" name="descriptionForRegistration" id="description"
+               placeholder="Enter description for new user"><br>
+
+        <div class="role">
+            <label for="USER">User</label>
+            <input type="radio" name="roleForRegistration" id="USER" value="USER">
+            <label for="ADMIN">Admin</label>
+            <input type="radio" name="roleForRegistration" id="ADMIN" value="ADMIN"><br>
+        </div>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
 
 </body>
 </html>

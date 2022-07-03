@@ -17,13 +17,7 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/registration")
 public class ServletForRegistration extends HttpServlet {
-    DBUser dbUser = new DBUser(new ArrayList<User>());
-
-    @Override
-    public void init() throws ServletException {
-        dbUser.addUser(new User("admin1", "123", Gender.MALE, "I am an admin", Role.ADMIN));
-        dbUser.addUser(new User("user1", "321", Gender.FEMALE, "I am a user", Role.USER));
-    }
+    DBUser dbUser = LoginServlet.returnDBuser();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

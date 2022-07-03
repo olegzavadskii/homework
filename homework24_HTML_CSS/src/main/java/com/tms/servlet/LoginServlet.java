@@ -16,7 +16,10 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-    DBUser dbUser = new DBUser(new ArrayList<User>());
+    static DBUser dbUser = new DBUser(new ArrayList<User>());
+    public static DBUser returnDBuser(){
+        return dbUser;
+    }
 
     @Override
     public void init() throws ServletException {

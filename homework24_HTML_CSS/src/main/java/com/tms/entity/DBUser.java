@@ -19,18 +19,16 @@ public class DBUser {
         dbUserList.add(user);
     }
 
-    public long checkWithRole(String login, String password) {
+    public boolean checkWithRole(String login, String password) {
         return dbUserList.stream()
                 .filter(user -> Role.ADMIN.equals(user.getRole()))
                 .filter(user -> login.equals(user.getLogin()))
-                .filter(user -> password.equals(user.getPassword()))
-                .count();
+                .anyMatch(user -> password.equals(user.getPassword()));
     }
 
-    public long checkWithLogin(String login) {
+    public boolean checkWithLogin(String login) {
         return dbUserList.stream()
-                .filter(user -> login.equals(user.getLogin()))
-                .count();
+                .anyMatch(user -> login.equals(user.getLogin()));
     }
 
 }

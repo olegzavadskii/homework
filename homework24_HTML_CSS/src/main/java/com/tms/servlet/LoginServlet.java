@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher requestDispatcher;
         String loginForCheck = req.getParameter("loginForCheck");
         String passwordForCheck = req.getParameter("passwordForCheck");
-        if (dbUser.checkWithRole(loginForCheck, passwordForCheck) > 0) {
+        if (dbUser.checkWithRole(loginForCheck, passwordForCheck)) {
             requestDispatcher = req.getRequestDispatcher(pathForAdmin);
             requestDispatcher.forward(req, resp);
         } else {

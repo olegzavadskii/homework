@@ -1,7 +1,7 @@
 package com.tms.servlet.servlet;
 
 import com.tms.servlet.entity.Car;
-import com.tms.servlet.entity.CarService;
+import com.tms.servlet.dao.DBCar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,22 +13,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet(urlPatterns = "/cars")
 public class MyServlet extends HttpServlet {
-    CarService carService = new CarService(new HashMap<String, Car>());
 
     @Override
     public void init() throws ServletException {
         System.out.println("Servlet was created");
-        Car car1 = new Car("VW", "silver", 5);
-        Car car2 = new Car("Renault", "green", 6);
-        Car car3 = new Car("AUDI", "white", 7);
-        carService.addCar("1", car1);
-        carService.addCar("2", car2);
-        carService.addCar("3", car3);
     }
 
     //печать машины по id или список всех машин
@@ -37,15 +28,16 @@ public class MyServlet extends HttpServlet {
         //установка интервала неактивности, после которого удаляются данные сессии
         //(это для более раннего вызова SessionListener, а то по умолчанию 30 минут многовато))
         req.getSession().setMaxInactiveInterval(20);
+        DBCar dbCar = DBCar.getDbCar();
 
         try (PrintWriter writer = resp.getWriter()) {
             String id = req.getParameter("id");
             String cookie = req.getParameter("cookie");
             if (id != null) {
                 if (id.equalsIgnoreCase("getAll")) {
-                    carService.getAllCars(writer);
+                    dbCar.getAllCars(writer);
                 } else {
-                    carService.getCarWithID(writer, id);
+                    dbCar.getCarWithID(writer, id);
                 }
             } else if (cookie != null) {
                 //вернуть время доступа в куках не получается
@@ -67,6 +59,7 @@ public class MyServlet extends HttpServlet {
     //сохранить данные о новой машине
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DBCar dbCar = DBCar.getDbCar();
         try (PrintWriter writer = resp.getWriter()) {
             String id = req.getParameter("id");
             String model = req.getParameter("model");
@@ -74,36 +67,35 @@ public class MyServlet extends HttpServlet {
             String age = req.getParameter("age");
             int ageFromReq = Integer.parseInt(age);
             Car carFromReq = new Car(model, color, ageFromReq);
-            carService.getCars().put(id, carFromReq);
-            for (Car car : carService.getCars().values()) {
-                writer.println(car);
-            }
+            dbCar.getCars().put(id, carFromReq);
+            dbCar.getAllCars(writer);
         }
     }
 
     //Обновить данные существующей машины
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DBCar dbCar = DBCar.getDbCar();
         try (PrintWriter writer = resp.getWriter()) {
             String id = req.getParameter("id");
             String model = req.getParameter("model");
             String color = req.getParameter("color");
             String age = req.getParameter("age");
-            Collection<String> keys = carService.getCars().keySet();
+            Collection<String> keys = dbCar.getCars().keySet();
             for (String key : keys) {
                 if (key.equals(id)) {
                     if (model != null) {
-                        carService.getCars().get(id).setModel(model);
+                        dbCar.getCars().get(id).setModel(model);
                     }
                     if (color != null) {
-                        carService.getCars().get(id).setColor(color);
+                        dbCar.getCars().get(id).setColor(color);
                     }
                     if (age != null) {
-                        carService.getCars().get(id).setAge(Integer.parseInt(age));
+                        dbCar.getCars().get(id).setAge(Integer.parseInt(age));
                     }
                 }
             }
-            for (Car car : carService.getCars().values()) {
+            for (Car car : dbCar.getCars().values()) {
                 writer.println(car);
             }
         }
@@ -112,13 +104,14 @@ public class MyServlet extends HttpServlet {
     //Удалить машину
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DBCar dbCar = DBCar.getDbCar();
         try (PrintWriter writer = resp.getWriter()) {
             String id = req.getParameter("id");
             if (id != null) {
-                Collection<String> keys = carService.getCars().keySet();
+                Collection<String> keys = dbCar.getCars().keySet();
                 for (String key : keys) {
                     if (key.equals(id)) {
-                        carService.getCars().remove(id);
+                        dbCar.getCars().remove(id);
                         writer.println("A car was deleted successfully");
                         break;
                     }

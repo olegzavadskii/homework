@@ -17,7 +17,7 @@ public class DBUser {
 
     List<User> dbUserList = new ArrayList<>();
 
-    /*блок инициализации для листа-мапы*/ {
+    /*блок инициализации для листа-поля*/ {
         dbUserList.add(admin1);
         dbUserList.add(user1);
     }

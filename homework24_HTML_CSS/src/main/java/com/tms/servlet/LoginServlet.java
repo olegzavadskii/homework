@@ -1,7 +1,7 @@
 package com.tms.servlet;
 
 import com.tms.Gender;
-import com.tms.entity.DBUser;
+import com.tms.dao.DBUser;
 import com.tms.Role;
 import com.tms.entity.User;
 
@@ -16,20 +16,15 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-    static DBUser dbUser = new DBUser(new ArrayList<User>());
-
-    public static DBUser returnDBuser() {
-        return dbUser;
-    }
 
     @Override
     public void init() throws ServletException {
-        dbUser.addUser(new User("admin1", "123", Gender.MALE, "I am an admin", Role.ADMIN));
-        dbUser.addUser(new User("user1", "321", Gender.FEMALE, "I am a user", Role.USER));
+        System.out.println("LoginServlet was created");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DBUser dbUser = DBUser.getDbUser();
         String pathForAdmin = "registration_page.html";
         String pathForUser = "Cat.jpg";
         RequestDispatcher requestDispatcher;

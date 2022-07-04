@@ -2,7 +2,7 @@ package com.tms.servlet;
 
 import com.tms.Gender;
 import com.tms.Role;
-import com.tms.entity.DBUser;
+import com.tms.dao.DBUser;
 import com.tms.entity.User;
 
 import javax.servlet.RequestDispatcher;
@@ -13,14 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/registration")
 public class ServletForRegistration extends HttpServlet {
-    DBUser dbUser = LoginServlet.returnDBuser();
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DBUser dbUser = DBUser.getDbUser();
         String pathIfError = "error_page.html";
         RequestDispatcher requestDispatcher;
 

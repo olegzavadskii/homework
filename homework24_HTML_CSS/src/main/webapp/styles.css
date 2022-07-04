@@ -1,0 +1,26 @@
+.parent_div {
+    font-size: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+label {
+    font-style: italic;
+    text-decoration: underline;
+    color: black;
+    font-family: Verdana;
+}
+
+label:hover {
+    color: red;
+}
+
+.gender,
+.role {
+    font-size: 15px;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+
+

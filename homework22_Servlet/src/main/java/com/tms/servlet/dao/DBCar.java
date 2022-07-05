@@ -14,7 +14,7 @@ public class DBCar {
     Car car3 = new Car("AUDI", "white", 7);
     Map<String, Car> cars = new HashMap<String, Car>();
 
-    /*блок инициализации поля-мапы*/ {
+    /*блок инициализации мапы*/ {
         cars.put("1", car1);
         cars.put("2", car2);
         cars.put("3", car3);

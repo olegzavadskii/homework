@@ -12,34 +12,38 @@
 </head>
 <body>
 
-<div class="parent_div">
+<div class="container">
 
-    <form method="post" action="/homework24_HTML_CSS/authorization">
+    <div class="row">
+        <div class="col-3">
+            <form method="post" action="/homework24_HTML_CSS/authorization">
 
-        <div class="mb-3">
-            <label for="loginForCheck" class="form-label">Login</label>
-            <input type="text" class="form-control" id="loginForCheck" name="loginForCheck"
-                   placeholder="Enter your login">
+                <div class="mb-3">
+                    <label for="loginForCheck" class="form-label">Login</label>
+                    <input type="text" class="form-control" id="loginForCheck" name="loginForCheck"
+                           placeholder="Enter your login">
+                </div>
+
+                <div class="mb-3">
+                    <label for="passwordForCheck" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordForCheck" name="passwordForCheck"
+                           placeholder="Enter your password">
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn btn-outline-primary"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
+                            value="Enter">Enter
+                    </button>
+
+                    <button type="reset" class="btn btn-outline-secondary"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
+                            value="Reset">Reset
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <div class="mb-3">
-            <label for="passwordForCheck" class="form-label">Password</label>
-            <input type="password" class="form-control" id="passwordForCheck" name="passwordForCheck"
-                   placeholder="Enter your password">
-        </div>
-
-        <div class="buttons">
-            <button type="submit" class="btn btn-outline-primary"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
-                    value="Enter">Enter
-            </button>
-            <button type="reset" class="btn btn-outline-secondary"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
-                    value="Reset">Reset
-            </button>
-        </div>
-
-    </form>
+    </div>
 </div>
 
 </body>

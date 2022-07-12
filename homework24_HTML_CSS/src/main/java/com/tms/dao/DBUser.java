@@ -2,13 +2,10 @@ package com.tms.dao;
 
 import com.tms.Gender;
 import com.tms.Role;
-import com.tms.entity.User;
+import com.tms.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DBUser {
 

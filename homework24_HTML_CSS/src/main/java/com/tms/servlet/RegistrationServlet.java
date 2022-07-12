@@ -3,7 +3,7 @@ package com.tms.servlet;
 import com.tms.Gender;
 import com.tms.Role;
 import com.tms.dao.DBUser;
-import com.tms.entity.User;
+import com.tms.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

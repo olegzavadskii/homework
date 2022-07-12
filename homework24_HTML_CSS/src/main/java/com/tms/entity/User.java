@@ -1,4 +1,4 @@
-package com.tms;
+package com.tms.entity;
 
 import com.tms.Gender;
 import com.tms.Role;

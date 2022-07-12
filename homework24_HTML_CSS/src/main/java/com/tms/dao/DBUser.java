@@ -2,7 +2,7 @@ package com.tms.dao;
 
 import com.tms.Gender;
 import com.tms.Role;
-import com.tms.User;
+import com.tms.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 public class Horse {
-    private int speed;
+    private double speed;
 
     public Horse() {
-        this.speed = 1 + (int) (Math.random() * 3);
+        this.speed = 1 + (Math.random() * 2);
     }
 }

@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class Rider {
-    private int level;
+    private double level;
 
     public Rider() {
-        this.level = 1 + (int) (Math.random() * 3);
+        this.level = 1 + (Math.random() * 2);
     }
 }

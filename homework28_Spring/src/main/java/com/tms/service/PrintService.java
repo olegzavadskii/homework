@@ -27,7 +27,7 @@ public class PrintService {
                 Iterator<Couple> iterator = coupleList.iterator();
                 while (iterator.hasNext()) {
                     Couple next = iterator.next();
-                    next.setSumSpeed(next.getSumSpeed() * (1 + (Math.random() * 2)));
+                    next.setSumSpeed(next.getSumSpeed() * ((Math.random() + 1)));
                 }
             }
             System.out.println("Результат после " + (i + 1) + " круга: ");

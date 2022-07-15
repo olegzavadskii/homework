@@ -8,6 +8,6 @@ public class Horse {
     private double speed;
 
     public Horse() {
-        this.speed = 1 + (Math.random() * 2);
+        this.speed = (Math.random() + 1);
     }
 }

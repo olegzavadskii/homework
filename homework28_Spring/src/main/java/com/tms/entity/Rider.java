@@ -7,6 +7,6 @@ public class Rider {
     private double level;
 
     public Rider() {
-        this.level = 1 + (Math.random() * 2);
+        this.level = (Math.random() + 1);
     }
 }

@@ -13,7 +13,7 @@ public class Couple implements Comparable<Couple> {
         this.number = number;
         this.horse = horse;
         this.rider = rider;
-        this.sumSpeed = horse.getSpeed() * rider.getLevel();
+        this.sumSpeed = horse.getSpeed() + rider.getLevel();
     }
 
     public double getSumSpeed() {
@@ -22,6 +22,6 @@ public class Couple implements Comparable<Couple> {
 
     @Override
     public int compareTo(Couple o) {
-        return (int) (o.getSumSpeed() - this.getSumSpeed());
+        return (int) Math.round(o.getSumSpeed() - this.getSumSpeed());
     }
 }

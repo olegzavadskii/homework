@@ -10,7 +10,5 @@ public class MainApp {
         DriverService driverService = context.getBean(DriverService.class);
         driverService.getPrintService().toRace();
         driverService.checkResult();
-
     }
-
 }

@@ -19,18 +19,14 @@ public class DriverService {
         Scanner scanner = new Scanner((System.in));
         System.out.println("Какая пара победит? Введите число от 1 до 3: ");
         this.rate = scanner.nextInt();
-        if (this.rate < 1) {
-            System.out.println("Вы ввели некорректное число. ");
-            setRate();
-        }
-        if (this.rate > 3) {
+        if (this.rate < 1 || this.rate > 3) {
             System.out.println("Вы ввели некорректное число. ");
             setRate();
         }
     }
 
     public void checkResult() {
-        if (PrintService.getCoupleList().get(0).getNumber() == this.rate) {
+        if (printService.getCoupleList().get(0).getNumber() == this.rate) {
             System.out.println("Вы выиграли!");
         } else {
             System.out.println("Вы проиграли!");

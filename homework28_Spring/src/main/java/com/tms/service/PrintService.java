@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 public class PrintService {
     private static List<Couple> coupleList = new ArrayList<>();
 
-    public PrintService() {
+    public PrintService(List<Couple> coupleList) {
+        this.coupleList = coupleList;
     }
 
     public void setCoupleList(List<Couple> coupleList) {

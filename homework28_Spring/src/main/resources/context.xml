@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean name="horse1" class="com.tms.entity.Horse"/>
     <bean name="horse2" class="com.tms.entity.Horse"/>
@@ -27,14 +27,22 @@
         <constructor-arg name="rider" ref="rider3"/>
     </bean>
 
+
     <bean name="PrintService" class="com.tms.service.PrintService">
-        <property name="coupleList">
-            <list>
+        <constructor-arg name="coupleList">
+            <util:list>
                 <ref bean="couple1"/>
                 <ref bean="couple2"/>
                 <ref bean="couple3"/>
-            </list>
-        </property>
+            </util:list>
+        </constructor-arg>
+        <!--        <property name="coupleList">-->
+        <!--            <list>-->
+        <!--                <ref bean="couple1"/>-->
+        <!--                <ref bean="couple2"/>-->
+        <!--                <ref bean="couple3"/>-->
+        <!--            </list>-->
+        <!--        </property>-->
     </bean>
 
     <bean name="DriverService" class="com.tms.service.DriverService" init-method="setRate">

@@ -8,17 +8,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PrintService {
-    private static List<Couple> coupleList = new ArrayList<>();
+    private List<Couple> coupleList = new ArrayList<>();
 
-    public PrintService(List<Couple> coupleList) {
-        this.coupleList = coupleList;
+    public PrintService() {
     }
 
     public void setCoupleList(List<Couple> coupleList) {
         this.coupleList = coupleList;
     }
 
-    public static List<Couple> getCoupleList() {
+    public List<Couple> getCoupleList() {
         return coupleList;
     }
 

@@ -27,15 +27,14 @@
         <constructor-arg name="rider" ref="rider3"/>
     </bean>
 
-
     <bean name="PrintService" class="com.tms.service.PrintService">
-        <constructor-arg name="coupleList">
+        <property name="coupleList">
             <util:list>
                 <ref bean="couple1"/>
                 <ref bean="couple2"/>
                 <ref bean="couple3"/>
             </util:list>
-        </constructor-arg>
+        </property>
         <!--        <property name="coupleList">-->
         <!--            <list>-->
         <!--                <ref bean="couple1"/>-->

@@ -1,7 +1,12 @@
 package com.tms.service;
 
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Scanner;
 
+@Component
 public class DriverService {
 
     private int rate;
@@ -15,6 +20,7 @@ public class DriverService {
         return printService;
     }
 
+    @PostConstruct
     public void setRate() {
         Scanner scanner = new Scanner((System.in));
         System.out.println("Какая пара победит? Введите число от 1 до 3: ");
@@ -25,6 +31,7 @@ public class DriverService {
         }
     }
 
+    @PreDestroy
     public void checkResult() {
         if (printService.getCoupleList().get(0).getNumber() == this.rate) {
             System.out.println("Вы выиграли!");

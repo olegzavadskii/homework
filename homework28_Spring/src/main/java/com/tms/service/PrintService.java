@@ -1,14 +1,27 @@
 package com.tms.service;
 
+import com.tms.config.MyConfig;
 import com.tms.entity.Couple;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class PrintService {
     private List<Couple> coupleList = new ArrayList<>();
+
+    {
+        MyConfig config = new MyConfig();
+        Couple couple1 = config.getCouple1();
+        Couple couple2 = config.getCouple2();
+        Couple couple3 = config.getCouple3();
+        coupleList.add(couple1);
+        coupleList.add(couple2);
+        coupleList.add(couple3);
+    }
 
     public PrintService() {
     }

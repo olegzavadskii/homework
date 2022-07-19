@@ -25,7 +25,7 @@ public class PrintService {
         return coupleList;
     }
 
-    public void toRace() {
+    public void toRace() throws InterruptedException {
         for (int i = 0; i < 5; i++) {
             if (i > 0) {
                 Iterator<Couple> iterator = coupleList.iterator();
@@ -34,6 +34,7 @@ public class PrintService {
                     next.setSumSpeed(next.getSumSpeed() * ((Math.random() + 1)));
                 }
             }
+            Thread.sleep(1000);
             System.out.println("Результат после " + (i + 1) + " круга: ");
             List<Couple> sortedList = coupleList.stream()
                     .sorted(Couple::compareTo)

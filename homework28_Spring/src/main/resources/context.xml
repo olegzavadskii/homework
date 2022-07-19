@@ -1,52 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">-->
 
-    <bean name="horse1" class="com.tms.entity.Horse"/>
-    <bean name="horse2" class="com.tms.entity.Horse"/>
-    <bean name="horse3" class="com.tms.entity.Horse"/>
+<!--    <bean name="horse1" class="com.tms.entity.Horse"/>-->
+<!--    <bean name="horse2" class="com.tms.entity.Horse"/>-->
+<!--    <bean name="horse3" class="com.tms.entity.Horse"/>-->
 
-    <bean name="rider1" class="com.tms.entity.Rider"/>
-    <bean name="rider2" class="com.tms.entity.Rider"/>
-    <bean name="rider3" class="com.tms.entity.Rider"/>
+<!--    <bean name="rider1" class="com.tms.entity.Rider"/>-->
+<!--    <bean name="rider2" class="com.tms.entity.Rider"/>-->
+<!--    <bean name="rider3" class="com.tms.entity.Rider"/>-->
 
-    <bean name="couple1" class="com.tms.entity.Couple">
-        <constructor-arg name="number" value="1"/>
-        <constructor-arg name="horse" ref="horse1"/>
-        <constructor-arg name="rider" ref="rider1"/>
-    </bean>
-    <bean name="couple2" class="com.tms.entity.Couple">
-        <constructor-arg name="number" value="2"/>
-        <constructor-arg name="horse" ref="horse2"/>
-        <constructor-arg name="rider" ref="rider2"/>
-    </bean>
-    <bean name="couple3" class="com.tms.entity.Couple">
-        <constructor-arg name="number" value="3"/>
-        <constructor-arg name="horse" ref="horse3"/>
-        <constructor-arg name="rider" ref="rider3"/>
-    </bean>
+<!--    <bean name="couple1" class="com.tms.entity.Couple">-->
+<!--        <constructor-arg name="number" value="1"/>-->
+<!--        <constructor-arg name="horse" ref="horse1"/>-->
+<!--        <constructor-arg name="rider" ref="rider1"/>-->
+<!--    </bean>-->
+<!--    <bean name="couple2" class="com.tms.entity.Couple">-->
+<!--        <constructor-arg name="number" value="2"/>-->
+<!--        <constructor-arg name="horse" ref="horse2"/>-->
+<!--        <constructor-arg name="rider" ref="rider2"/>-->
+<!--    </bean>-->
+<!--    <bean name="couple3" class="com.tms.entity.Couple">-->
+<!--        <constructor-arg name="number" value="3"/>-->
+<!--        <constructor-arg name="horse" ref="horse3"/>-->
+<!--        <constructor-arg name="rider" ref="rider3"/>-->
+<!--    </bean>-->
 
-    <bean name="PrintService" class="com.tms.service.PrintService">
-        <property name="coupleList">
-            <util:list>
-                <ref bean="couple1"/>
-                <ref bean="couple2"/>
-                <ref bean="couple3"/>
-            </util:list>
-        </property>
-        <!--        <property name="coupleList">-->
-        <!--            <list>-->
-        <!--                <ref bean="couple1"/>-->
-        <!--                <ref bean="couple2"/>-->
-        <!--                <ref bean="couple3"/>-->
-        <!--            </list>-->
-        <!--        </property>-->
-    </bean>
+<!--    <bean name="PrintService" class="com.tms.service.PrintService">-->
+<!--        <property name="coupleList">-->
+<!--            <util:list>-->
+<!--                <ref bean="couple1"/>-->
+<!--                <ref bean="couple2"/>-->
+<!--                <ref bean="couple3"/>-->
+<!--            </util:list>-->
+<!--        </property>-->
+<!--        &lt;!&ndash;        <property name="coupleList">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <list>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <ref bean="couple1"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <ref bean="couple2"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <ref bean="couple3"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </list>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </property>&ndash;&gt;-->
+<!--    </bean>-->
 
-    <bean name="DriverService" class="com.tms.service.DriverService" init-method="setRate">
-        <constructor-arg name="printService" ref="PrintService"/>
-    </bean>
+<!--    <bean name="DriverService" class="com.tms.service.DriverService" init-method="setRate">-->
+<!--        <constructor-arg name="printService" ref="PrintService"/>-->
+<!--    </bean>-->
 
 
-</beans>
+<!--</beans>-->

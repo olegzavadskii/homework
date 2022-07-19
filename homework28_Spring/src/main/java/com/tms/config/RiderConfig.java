@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class RiderConfig {
-    @Bean
+    @Bean(name = "rider")
     @Scope("prototype")
     public Rider getRider() {
         return new Rider();

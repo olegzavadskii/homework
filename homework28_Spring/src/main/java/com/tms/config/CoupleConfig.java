@@ -9,17 +9,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CoupleConfig {
 
-    @Bean
+    @Bean(name = "couple1")
     public Couple getCouple1(Horse horse, Rider rider) {
         return new Couple(1, horse, rider);
     }
 
-    @Bean
+    @Bean(name = "couple2")
     public Couple getCouple2(Horse horse, Rider rider) {
         return new Couple(2, horse, rider);
     }
 
-    @Bean
+    @Bean(name = "couple3")
     public Couple getCouple3(Horse horse, Rider rider) {
         return new Couple(3, horse, rider);
     }

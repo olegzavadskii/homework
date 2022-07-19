@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class HorseConfig {
 
-    @Bean
+    @Bean(name = "horse")
     @Scope("prototype")
     public Horse getHorse() {
         return new Horse();

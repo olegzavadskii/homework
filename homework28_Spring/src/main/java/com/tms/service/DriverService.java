@@ -1,5 +1,6 @@
 package com.tms.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class DriverService {
 
     private int rate;
+    @Autowired
     private PrintService printService;
 
     public DriverService(PrintService printService) {

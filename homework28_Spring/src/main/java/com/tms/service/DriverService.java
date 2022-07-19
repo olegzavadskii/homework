@@ -1,13 +1,13 @@
 package com.tms.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.Scanner;
 
-@Component
+@Service
 public class DriverService {
 
     private int rate;

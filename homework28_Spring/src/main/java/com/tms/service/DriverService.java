@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.util.Scanner;
 
 @Service
@@ -33,7 +32,6 @@ public class DriverService {
         }
     }
 
-    @PreDestroy
     public void checkResult() {
         if (printService.getCoupleList().get(0).getNumber() == this.rate) {
             System.out.println("Вы выиграли!");

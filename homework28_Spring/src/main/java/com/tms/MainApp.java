@@ -14,6 +14,7 @@ public class MainApp {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        driverService.checkResult();
+//        driverService.checkResult();
+        annotContext.registerShutdownHook();
     }
 }

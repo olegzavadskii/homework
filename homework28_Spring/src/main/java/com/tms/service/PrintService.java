@@ -1,5 +1,6 @@
 package com.tms.service;
 
+import com.tms.annotation.Loggable;
 import com.tms.entity.Couple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class PrintService {
         return coupleList;
     }
 
+    @Loggable
     public void toRace() throws InterruptedException {
         for (int i = 0; i < 5; i++) {
             if (i > 0) {
@@ -36,7 +38,7 @@ public class PrintService {
                 }
             }
 //            Thread.sleep(1000);
-            System.out.println("Результат после " + (i + 1) + " круга: ");
+            System.out.println("\n" + "Результат после " + (i + 1) + " круга: ");
             List<Couple> sortedList = coupleList.stream()
                     .sorted(Couple::compareTo)
                     .collect(Collectors.toList());

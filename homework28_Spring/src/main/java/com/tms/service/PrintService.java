@@ -1,13 +1,19 @@
 package com.tms.service;
 
+import com.tms.annotation.Loggable;
 import com.tms.entity.Couple;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class PrintService {
+    @Autowired
     private List<Couple> coupleList = new ArrayList<>();
 
     public PrintService() {
@@ -21,16 +27,18 @@ public class PrintService {
         return coupleList;
     }
 
-    public void toRace() {
+    @Loggable
+    public void toRace() throws InterruptedException {
         for (int i = 0; i < 5; i++) {
             if (i > 0) {
                 Iterator<Couple> iterator = coupleList.iterator();
                 while (iterator.hasNext()) {
                     Couple next = iterator.next();
-                    next.setSumSpeed(next.getSumSpeed() * ((Math.random() + 1)));
+                    next.setSumSpeed(next.getSumSpeed() * ((int) (1 + (Math.random() * 5))));
                 }
             }
-            System.out.println("Результат после " + (i + 1) + " круга: ");
+//            Thread.sleep(1000);
+            System.out.println("\n" + "Результат после " + (i + 1) + " круга: ");
             List<Couple> sortedList = coupleList.stream()
                     .sorted(Couple::compareTo)
                     .collect(Collectors.toList());
@@ -38,6 +46,4 @@ public class PrintService {
             setCoupleList(sortedList);
         }
     }
-
-
 }

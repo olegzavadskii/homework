@@ -1,10 +1,17 @@
 package com.tms.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Scanner;
 
+@Service
 public class DriverService {
 
     private int rate;
+    @Autowired
     private PrintService printService;
 
     public DriverService(PrintService printService) {
@@ -15,6 +22,7 @@ public class DriverService {
         return printService;
     }
 
+    @PostConstruct
     public void setRate() {
         Scanner scanner = new Scanner((System.in));
         System.out.println("Какая пара победит? Введите число от 1 до 3: ");
@@ -25,6 +33,7 @@ public class DriverService {
         }
     }
 
+    @PreDestroy
     public void checkResult() {
         if (printService.getCoupleList().get(0).getNumber() == this.rate) {
             System.out.println("Вы выиграли!");

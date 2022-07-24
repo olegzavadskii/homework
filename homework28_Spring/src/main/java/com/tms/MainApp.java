@@ -1,6 +1,6 @@
 package com.tms;
 
-import com.tms.service.DriverService;
+import com.tms.service.PrintService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
@@ -8,9 +8,9 @@ public class MainApp {
     public static void main(String[] args) {
 //        ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         AbstractApplicationContext annotContext = new AnnotationConfigApplicationContext("com.tms");
-        DriverService driverService = annotContext.getBean(DriverService.class);
+        PrintService printService = annotContext.getBean(PrintService.class);
         try {
-            driverService.getPrintService().toRace();
+            printService.toRace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
